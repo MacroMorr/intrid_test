@@ -42,5 +42,18 @@ class GoodsRepository
         return Yii::$app->db->createCommand($sql)->queryAll();
     }
 
-
+    /**
+     * Получить товар по ID
+     * @param int $id ID товара
+     * @return array
+     * @throws Exception
+     */
+    public static function getById(int $id): array
+    {
+        return Yii::$app->db->createCommand('
+            SELECT `id`, `goods_category_id`, `goods_model_id`, `name`, `price`
+            FROM `goods`
+            WHERE `id` = :id
+        ')->bindParam(':id', $id)->queryOne();
+    }
 }

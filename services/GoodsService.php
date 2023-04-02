@@ -22,4 +22,9 @@ class GoodsService
 
         return GoodsRepository::getList($filter);
     }
+
+    public function getById(int|string $id): array
+    {
+        return GoodsRepository::getById((int)$id);
+    }
 }
