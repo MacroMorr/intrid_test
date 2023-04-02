@@ -18,7 +18,7 @@ class SizeRepository
             SELECT DISTINCT size.id, size.name
             FROM goods_size as size
                 INNER JOIN goods_store gs on size.id = gs.goods_color_id;
-        ')->queryAll();
+        ')->queryAll() ?: [];
     }
 
     /**
@@ -34,6 +34,6 @@ class SizeRepository
             FROM goods_size size
                 INNER JOIN goods_store store on size.id = store.goods_size_id
             WHERE store.goods_id = :goods_id
-        ')->bindParam(':goods_id', $goodsId)->queryAll();
+        ')->bindParam(':goods_id', $goodsId)->queryAll() ?: [];
     }
 }

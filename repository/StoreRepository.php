@@ -24,6 +24,6 @@ class StoreRepository
         $builder = Yii::$app->db->createCommand($sql);
         $builder->bindParam(':goods_id', $goodsId);
 
-        return $builder->queryAll();
+        return $builder->queryAll() ?: [];
     }
 }

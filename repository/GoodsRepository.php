@@ -39,7 +39,7 @@ class GoodsRepository
             $sql .= sprintf(' `size`.`id` IN (%s)', implode(',', $filter['sizes']));
         }
 
-        return Yii::$app->db->createCommand($sql)->queryAll();
+        return Yii::$app->db->createCommand($sql)->queryAll() ?: [];
     }
 
     /**
@@ -54,6 +54,6 @@ class GoodsRepository
             SELECT `id`, `goods_category_id`, `goods_model_id`, `name`, `price`
             FROM `goods`
             WHERE `id` = :id
-        ')->bindParam(':id', $id)->queryOne();
+        ')->bindParam(':id', $id)->queryOne() ?: [];
     }
 }

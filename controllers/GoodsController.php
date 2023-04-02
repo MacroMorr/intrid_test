@@ -7,12 +7,14 @@ use app\services\ColorService;
 use app\services\GoodsService;
 use app\services\SizeService;
 use app\services\StoreService;
+use Codeception\Util\HttpCode;
 use JetBrains\PhpStorm\ArrayShape;
 use Yii;
 use yii\base\InvalidConfigException;
 use yii\db\Exception;
 use yii\di\NotInstantiableException;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class GoodsController extends Controller
 {
@@ -67,6 +69,9 @@ class GoodsController extends Controller
 
         $id = Yii::$app->request->get('id');
         $goodsCard = $goodsService->getById($id);
+        if (!$goodsCard) {
+            throw new NotFoundHttpException("Goods with ID {$id} not found!");
+        }
         $storeList = $storeService->getByGoodsId($id);
         $colors = $colorService->getByGoodsId($id);
         $sizes = $sizeService->getByGoodsId($id);

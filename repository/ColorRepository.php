@@ -18,7 +18,7 @@ class ColorRepository
             SELECT DISTINCT gc.id, gc.name
             FROM goods_color as gc
                 INNER JOIN goods_store gs on gc.id = gs.goods_color_id;
-        ')->queryAll();
+        ')->queryAll() ?: [];
     }
 
     /**
@@ -34,6 +34,6 @@ class ColorRepository
             FROM goods_color color
                 INNER JOIN goods_store store on color.id = store.goods_color_id
             WHERE store.goods_id = :goods_id
-        ')->bindParam(':goods_id', $goodsId)->queryAll();
+        ')->bindParam(':goods_id', $goodsId)->queryAll() ?: [];
     }
 }
