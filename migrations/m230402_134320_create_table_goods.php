@@ -15,6 +15,7 @@ class m230402_134320_create_table_goods extends Migration
                 'goods_category_id' => $this->integer()->notNull(),
                 'goods_model_id' => $this->integer()->notNull(),
                 'name' => $this->string(255)->notNull(),
+                'price' => $this->float()->notNull(),
             ], "COMMENT 'Список товаров'");
 
             $this->addForeignKey(
