@@ -8,13 +8,13 @@ class GoodsService
 {
     public function getList(array $filter): array
     {
-        if ($filter && $filter['colors']) {
+        if ($filter && !empty($filter['colors'])) {
             $filter['colors'] = array_map(static function ($colorId) {
                 return (int)$colorId;
             }, explode(',', $filter['colors']));
         }
 
-        if ($filter && $filter['sizes']) {
+        if ($filter && !empty($filter['sizes'])) {
             $filter['sizes'] = array_map(static function ($sizeId) {
                 return (int)$sizeId;
             }, explode(',', $filter['sizes']));

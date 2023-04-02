@@ -29,16 +29,18 @@ class GoodsRepository
             ';
         }
 
-        if ($filter['colors']) {
+        if (!empty($filter['colors'])) {
             $sql .= sprintf(' WHERE `color`.`id` IN (%s)', implode(',', $filter['colors']));
             $isIssetConditions = true;
         }
 
-        if ($filter['sizes']) {
+        if (!empty($filter['sizes'])) {
             $sql .= $isIssetConditions ? ' AND' : ' WHERE';
             $sql .= sprintf(' `size`.`id` IN (%s)', implode(',', $filter['sizes']));
         }
 
         return Yii::$app->db->createCommand($sql)->queryAll();
     }
+
+
 }
